@@ -27,9 +27,9 @@ instructions/
   "rulesFile": "ai-instructions.md",
   "installationInstructions": "Brief setup instructions",
   "description": "Short description",
-  "link": "https://github.com/username/ai-instructions/blob/main/instructions/technology-name/ai-instructions.md",
+  "link": "https://github.com/PeterM45/ai-instructions/blob/main/instructions/technology-name/ai-instructions.md",
   "lastUpdated": "YYYY-MM-DD",
-  "contributors": ["your-github-username"]
+  "contributors": ["your-github-PeterM45"]
 }
 ```
 
@@ -49,7 +49,7 @@ instructions/
 
 ## Questions?
 
-- [Open an issue](https://github.com/username/ai-instructions/issues)
-- [Start a discussion](https://github.com/username/ai-instructions/discussions)
+- [Open an issue](https://github.com/PeterM45/ai-instructions/issues)
+- [Start a discussion](https://github.com/PeterM45/ai-instructions/discussions)
 
 Thanks for contributing! 🚀

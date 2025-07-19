@@ -12,6 +12,17 @@ import { Technology, TechnologyType } from '@models/technology.model';
 import { TechnologyService } from '@core/services/technology.service';
 import { TechnologyCardComponent } from '@shared/components/technology-card/technology-card.component';
 import { SearchFilterComponent } from '@shared/components/search-filter/search-filter.component';
+import {
+  LucideAngularModule,
+  Database,
+  Search,
+  Github,
+  AlertCircle,
+  Loader2,
+  Book,
+  Plus,
+  Star,
+} from 'lucide-angular';
 
 @Component({
   selector: 'app-home',
@@ -21,11 +32,22 @@ import { SearchFilterComponent } from '@shared/components/search-filter/search-f
     HttpClientModule,
     TechnologyCardComponent,
     SearchFilterComponent,
+    LucideAngularModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit {
   private readonly technologyService = inject(TechnologyService);
+
+  // Lucide icons
+  readonly Database = Database;
+  readonly Search = Search;
+  readonly Github = Github;
+  readonly AlertCircle = AlertCircle;
+  readonly Loader2 = Loader2;
+  readonly Book = Book;
+  readonly Plus = Plus;
+  readonly Star = Star;
 
   private readonly _technologies = signal<Technology[]>([]);
   private readonly _searchTerm = signal('');

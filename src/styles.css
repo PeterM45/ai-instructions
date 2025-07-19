@@ -3,7 +3,13 @@
 
 /* Custom base styles */
 @layer base {
+  html {
+    color-scheme: dark;
+  }
+
   body {
     font-family: "Inter", sans-serif;
+    background-color: rgb(15 23 42); /* slate-900 */
+    color: rgb(226 232 240); /* slate-200 */
   }
 }
