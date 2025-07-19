@@ -1,0 +1,135 @@
+<div
+  class="bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-200 p-6"
+>
+  <div class="flex items-start justify-between mb-4">
+    <div class="flex-1">
+      <div class="flex items-center gap-2 mb-2">
+        <h3 class="text-lg font-semibold text-gray-900">
+          {{ technology().environment }}
+        </h3>
+        <span
+          class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium"
+          [class]="getTypeClasses(technology().type)"
+        >
+          {{ technology().type }}
+        </span>
+      </div>
+
+      @if (technology().description) {
+      <p class="text-gray-600 text-sm mb-3">
+        {{ technology().description }}
+      </p>
+      }
+
+      <div class="space-y-2">
+        <div class="flex items-center text-sm text-gray-500">
+          <svg
+            class="w-4 h-4 mr-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+            ></path>
+          </svg>
+          Rules File:
+          <span class="font-mono text-xs ml-1">{{
+            technology().rulesFile
+          }}</span>
+        </div>
+
+        <div class="flex items-center text-sm text-gray-500">
+          <svg
+            class="w-4 h-4 mr-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+            ></path>
+          </svg>
+          {{ technology().installationInstructions }}
+        </div>
+
+        @if (technology().lastUpdated) {
+        <div class="flex items-center text-sm text-gray-500">
+          <svg
+            class="w-4 h-4 mr-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+            ></path>
+          </svg>
+          Updated: {{ formatDate(technology().lastUpdated!) }}
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      @if (technology().contributors && technology().contributors!.length > 0) {
+      <div class="flex items-center text-sm text-gray-500">
+        <svg
+          class="w-4 h-4 mr-1"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+          ></path>
+        </svg>
+        {{ technology().contributors!.length }} contributor{{
+          technology().contributors!.length !== 1 ? "s" : ""
+        }}
+      </div>
+      }
+    </div>
+
+    <a
+      [href]="technology().link"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center px-4 py-2 bg-primary-600 text-white text-sm font-medium rounded-md hover:bg-primary-700 transition-colors duration-200"
+    >
+      <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+        <path
+          d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 10.956.557-.085.766-.25.766-.554v-2.172c-3.117.673-3.78-1.565-3.78-1.565-.511-1.283-1.239-1.623-1.239-1.623-.997-.673.084-.66.084-.66 1.125.085 1.708 1.147 1.708 1.147.975 1.649 2.572 1.174 3.201.896.085-.695.378-1.174.695-1.443-2.444-.278-5.011-1.214-5.011-5.428 0-1.204.418-2.172 1.147-2.955-.125-.278-.514-1.397.085-2.906 0 0 .914-.278 3.005 1.147.875-.25 1.708-.362 2.573-.375.864.013 1.697.125 2.572.375 2.091-1.425 3.005-1.147 3.005-1.147.599 1.509.21 2.628.085 2.906.729.783 1.147 1.751 1.147 2.955 0 4.214-2.567 5.15-5.011 5.428.418.362.766 1.045.766 2.125v3.171c0 .304.209.469.766.554C20.859 21.404 24.017 17.066 24.017 11.987 24.017 5.367 18.65.001 12.017.001z"
+        />
+      </svg>
+      View Rules
+      <svg
+        class="w-4 h-4 ml-1"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+        ></path>
+      </svg>
+    </a>
+  </div>
+</div>

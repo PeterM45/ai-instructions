@@ -1,59 +1,70 @@
-# AiInstructions
+# AI Instructions Hub
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.1.
+A community-driven collection of AI coding instructions and best practices for various technologies and development environments.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- Modern Angular 20+ with signals and standalone components
+- Responsive design with Tailwind CSS
+- Real-time search and filtering
+- Community contributions via GitHub pull requests
 
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Getting Started
 
 ```bash
-ng generate component component-name
+# Install dependencies
+pnpm install
+
+# Start development server
+pnpm start
+
+# Open browser
+http://localhost:4200
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Project Structure
 
-```bash
-ng generate --help
+```
+src/
+├── app/
+│   ├── components/       # Reusable components
+│   ├── models/          # TypeScript interfaces
+│   ├── pages/           # Page components
+│   └── services/        # Angular services
+├── data/
+│   └── prompts.json     # Technology data
 ```
 
-## Building
+## Contributing
 
-To build the project run:
+1. Fork this repository
+2. Add your instruction files to the appropriate directory
+3. Update `data/prompts.json` with your technology details
+4. Submit a pull request
 
-```bash
-ng build
+### Adding a New Technology
+
+Add an entry to `data/prompts.json`:
+
+```json
+{
+  "id": "your-tech",
+  "environment": "Your Technology",
+  "type": "Framework",
+  "rulesFile": "ai-instructions.md",
+  "installationInstructions": "How to configure",
+  "description": "Brief description",
+  "link": "https://github.com/PeterM45/ai-instructions/blob/main/instructions/your-tech/ai-instructions.md"
+}
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Built With
 
-## Running unit tests
+- Angular 20+
+- Tailwind CSS
+- TypeScript
+- RxJS
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## License
 
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+MIT License - see [LICENSE](LICENSE) for details.

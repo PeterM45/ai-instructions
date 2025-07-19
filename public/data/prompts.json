@@ -1,0 +1,57 @@
+[
+  {
+    "id": "github-copilot",
+    "environment": "GitHub Copilot",
+    "type": "AI/ML",
+    "rulesFile": "copilot-instructions.md",
+    "installationInstructions": "Configure .github/copilot-instructions.md in your repository",
+    "description": "AI pair programmer for faster coding",
+    "link": "https://github.com/PeterM45/ai-instructions/blob/main/.github/copilot-instructions.md",
+    "lastUpdated": "2025-01-19",
+    "contributors": ["github-user"]
+  },
+  {
+    "id": "angular",
+    "environment": "Angular",
+    "type": "Framework",
+    "rulesFile": "ai-instructions.md",
+    "installationInstructions": "Copy to .github/copilot-instructions.md or .cursorrules",
+    "description": "Modern web framework with TypeScript and signals",
+    "link": "https://github.com/PeterM45/ai-instructions/blob/main/instructions/angular/ai-instructions.md",
+    "lastUpdated": "2025-01-19",
+    "contributors": ["angular-dev"]
+  },
+  {
+    "id": "vscode",
+    "environment": "VS Code",
+    "type": "IDE",
+    "rulesFile": "vscode-setup.md",
+    "installationInstructions": "Install extensions and configure workspace settings",
+    "description": "Popular code editor with AI-powered extensions",
+    "link": "https://github.com/PeterM45/ai-instructions/blob/main/instructions/vscode/vscode-setup.md",
+    "lastUpdated": "2025-01-19",
+    "contributors": ["vscode-user"]
+  },
+  {
+    "id": "typescript",
+    "environment": "TypeScript",
+    "type": "Framework",
+    "rulesFile": "typescript-best-practices.md",
+    "installationInstructions": "Add TypeScript configuration to your project",
+    "description": "Typed superset of JavaScript for better development",
+    "link": "https://github.com/PeterM45/ai-instructions/blob/main/instructions/typescript/typescript-best-practices.md",
+    "lastUpdated": "2025-01-19",
+    "contributors": ["ts-dev"]
+  },
+  {
+    "id": "tailwind",
+    "environment": "Tailwind CSS",
+    "type": "Tool",
+    "rulesFile": "tailwind-guidelines.md",
+    "installationInstructions": "Add Tailwind CSS to your project",
+    "description": "Utility-first CSS framework for rapid UI development",
+    "link": "https://github.com/PeterM45/ai-instructions/blob/main/instructions/tailwind/tailwind-guidelines.md",
+    "lastUpdated": "2025-01-19",
+    "contributors": ["css-dev"]
+  }
+]

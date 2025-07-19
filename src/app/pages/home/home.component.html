@@ -1,0 +1,282 @@
+<div class="min-h-screen bg-gray-50">
+  <!-- Header -->
+  <header class="bg-white shadow-sm border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+        <div class="flex-1">
+          <h1 class="text-3xl font-bold text-gray-900">AI Instructions Hub</h1>
+          <p class="mt-2 text-gray-600">
+            Community-driven collection of AI coding instructions, guidelines,
+            and best practices
+          </p>
+        </div>
+
+        <div class="mt-4 md:mt-0 flex items-center gap-4">
+          <!-- Stats -->
+          <div class="flex items-center gap-6 text-sm text-gray-500">
+            <div class="flex items-center">
+              <svg
+                class="w-4 h-4 mr-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                ></path>
+              </svg>
+              {{ totalTechnologies() }} Technologies
+            </div>
+
+            @if (filteredCount() !== totalTechnologies()) {
+            <div class="flex items-center text-primary-600">
+              <svg
+                class="w-4 h-4 mr-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                ></path>
+              </svg>
+              {{ filteredCount() }} Filtered
+            </div>
+            }
+          </div>
+
+          <!-- Contribute Button -->
+          <a
+            href="https://github.com/PeterM45/ai-instructions"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center px-4 py-2 bg-primary-600 text-white text-sm font-medium rounded-md hover:bg-primary-700 transition-colors duration-200"
+          >
+            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 10.956.557-.085.766-.25.766-.554v-2.172c-3.117.673-3.78-1.565-3.78-1.565-.511-1.283-1.239-1.623-1.239-1.623-.997-.673.084-.66.084-.66 1.125.085 1.708 1.147 1.708 1.147.975 1.649 2.572 1.174 3.201.896.085-.695.378-1.174.695-1.443-2.444-.278-5.011-1.214-5.011-5.428 0-1.204.418-2.172 1.147-2.955-.125-.278-.514-1.397.085-2.906 0 0 .914-.278 3.005 1.147.875-.25 1.708-.362 2.573-.375.864.013 1.697.125 2.572.375 2.091-1.425 3.005-1.147 3.005-1.147.599 1.509.21 2.628.085 2.906.729.783 1.147 1.751 1.147 2.955 0 4.214-2.567 5.15-5.011 5.428.418.362.766 1.045.766 2.125v3.171c0 .304.209.469.766.554C20.859 21.404 24.017 17.066 24.017 11.987 24.017 5.367 18.65.001 12.017.001z"
+              />
+            </svg>
+            Contribute
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Search and Filters -->
+    <app-search-filter
+      (searchChange)="onSearchChange($event)"
+      (typeChange)="onTypeChange($event)"
+    ></app-search-filter>
+
+    <!-- Type Statistics -->
+    @if (typeStats().length > 0) {
+    <div class="mb-6">
+      <h2 class="text-lg font-semibold text-gray-900 mb-3">
+        Technologies by Type
+      </h2>
+      <div class="flex flex-wrap gap-2">
+        @for (stat of typeStats(); track stat.type) {
+        <span
+          class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-gray-100 text-gray-700"
+        >
+          {{ stat.type }}
+          <span
+            class="ml-2 bg-gray-200 text-gray-600 px-2 py-0.5 rounded-full text-xs"
+          >
+            {{ stat.count }}
+          </span>
+        </span>
+        }
+      </div>
+    </div>
+    }
+
+    <!-- Loading State -->
+    @if (isLoading()) {
+    <div class="flex items-center justify-center py-12">
+      <div class="flex items-center space-x-2">
+        <div
+          class="animate-spin rounded-full h-6 w-6 border-b-2 border-primary-600"
+        ></div>
+        <span class="text-gray-600">Loading technologies...</span>
+      </div>
+    </div>
+    }
+
+    <!-- Error State -->
+    @else if (error()) {
+    <div class="bg-red-50 border border-red-200 rounded-md p-4 mb-6">
+      <div class="flex">
+        <div class="flex-shrink-0">
+          <svg
+            class="h-5 w-5 text-red-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            ></path>
+          </svg>
+        </div>
+        <div class="ml-3">
+          <h3 class="text-sm font-medium text-red-800">
+            Error Loading Technologies
+          </h3>
+          <div class="mt-2 text-sm text-red-700">
+            <p>{{ error() }}</p>
+          </div>
+          <div class="mt-4">
+            <button
+              type="button"
+              (click)="retryLoading()"
+              class="bg-red-100 px-3 py-2 rounded-md text-sm font-medium text-red-800 hover:bg-red-200 transition-colors duration-200"
+            >
+              Try Again
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+
+    <!-- Technologies Grid -->
+    @else if (filteredTechnologies().length > 0) {
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      @for (technology of filteredTechnologies(); track technology.id) {
+      <app-technology-card [technology]="technology"></app-technology-card>
+      }
+    </div>
+    }
+
+    <!-- Empty State -->
+    @else {
+    <div class="text-center py-12">
+      <svg
+        class="mx-auto h-12 w-12 text-gray-400"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+        ></path>
+      </svg>
+      <h3 class="mt-2 text-sm font-medium text-gray-900">
+        No technologies found
+      </h3>
+      <p class="mt-1 text-sm text-gray-500">
+        Try adjusting your search or filter criteria.
+      </p>
+    </div>
+    }
+
+    <!-- Call to Action -->
+    <div class="mt-16 bg-primary-50 rounded-lg p-8 text-center">
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">
+        Help Grow the Community
+      </h2>
+      <p class="text-gray-600 mb-6 max-w-2xl mx-auto">
+        Have instructions for a technology not listed here? Contribute to the
+        community by submitting your AI coding guidelines and best practices
+        through a GitHub pull request.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="https://github.com/PeterM45/ai-instructions/blob/main/CONTRIBUTING.md"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center px-6 py-3 bg-primary-600 text-white font-medium rounded-md hover:bg-primary-700 transition-colors duration-200"
+        >
+          <svg
+            class="w-5 h-5 mr-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+            ></path>
+          </svg>
+          Contribution Guide
+        </a>
+        <a
+          href="https://github.com/PeterM45/ai-instructions/issues/new"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center px-6 py-3 bg-white text-primary-600 font-medium rounded-md border border-primary-300 hover:bg-primary-50 transition-colors duration-200"
+        >
+          <svg
+            class="w-5 h-5 mr-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+            ></path>
+          </svg>
+          Request Technology
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-gray-200 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="text-center">
+        <p class="text-gray-500">
+          Built with ❤️ by the community. Powered by Angular
+          {{ getAngularVersion() }} and Tailwind CSS.
+        </p>
+        <div class="mt-4 flex justify-center space-x-6">
+          <a
+            href="https://github.com/PeterM45/ai-instructions"
+            class="text-gray-400 hover:text-gray-500 transition-colors duration-200"
+          >
+            <span class="sr-only">GitHub</span>
+            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 10.956.557-.085.766-.25.766-.554v-2.172c-3.117.673-3.78-1.565-3.78-1.565-.511-1.283-1.239-1.623-1.239-1.623-.997-.673.084-.66.084-.66 1.125.085 1.708 1.147 1.708 1.147.975 1.649 2.572 1.174 3.201.896.085-.695.378-1.174.695-1.443-2.444-.278-5.011-1.214-5.011-5.428 0-1.204.418-2.172 1.147-2.955-.125-.278-.514-1.397.085-2.906 0 0 .914-.278 3.005 1.147.875-.25 1.708-.362 2.573-.375.864.013 1.697.125 2.572.375 2.091-1.425 3.005-1.147 3.005-1.147.599 1.509.21 2.628.085 2.906.729.783 1.147 1.751 1.147 2.955 0 4.214-2.567 5.15-5.011 5.428.418.362.766 1.045.766 2.125v3.171c0 .304.209.469.766.554C20.859 21.404 24.017 17.066 24.017 11.987 24.017 5.367 18.65.001 12.017.001z"
+              />
+            </svg>
+          </a>
+          <a
+            href="https://angular.dev"
+            class="text-gray-400 hover:text-gray-500 transition-colors duration-200"
+          >
+            <span class="sr-only">Angular</span>
+            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M12 2l3.09 6.26L22 9l-5.55 5.15L17.82 21 12 17.77 6.18 21l1.37-6.85L2 9l6.91-.74L12 2z"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
