@@ -2,6 +2,7 @@ import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map, catchError, of, delay } from 'rxjs';
 import { Technology } from '@models/technology.model';
+import { APP_CONFIG } from '@shared/constants/app.constants';
 
 @Injectable({
   providedIn: 'root',
@@ -44,7 +45,7 @@ export class TechnologyService {
         rulesFile: 'copilot-instructions.md',
         installationInstructions: 'Configure .github/copilot-instructions.md',
         description: 'AI pair programmer for faster coding',
-        link: 'https://github.com/PeterM45/ai-instructions/blob/main/instructions/github-copilot/copilot-instructions.md',
+        link: `${APP_CONFIG.INSTRUCTIONS_BASE_URL}/github-copilot/copilot-instructions.md`,
         lastUpdated: '2025-01-19',
         contributors: ['github-user'],
       },
@@ -55,7 +56,7 @@ export class TechnologyService {
         rulesFile: 'angular-guidelines.md',
         installationInstructions: 'Add to your Angular project',
         description: 'Modern web framework with TypeScript',
-        link: 'https://github.com/PeterM45/ai-instructions/blob/main/instructions/angular/angular-guidelines.md',
+        link: `${APP_CONFIG.INSTRUCTIONS_BASE_URL}/angular/angular-guidelines.md`,
         lastUpdated: '2025-01-19',
         contributors: ['angular-dev'],
       },
@@ -66,7 +67,7 @@ export class TechnologyService {
         rulesFile: 'vscode-setup.md',
         installationInstructions: 'Install extensions and configure settings',
         description: 'Popular code editor with AI extensions',
-        link: 'https://github.com/PeterM45/ai-instructions/blob/main/instructions/vscode/vscode-setup.md',
+        link: `${APP_CONFIG.INSTRUCTIONS_BASE_URL}/vscode/vscode-setup.md`,
         lastUpdated: '2025-01-19',
         contributors: ['vscode-user'],
       },

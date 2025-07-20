@@ -29,7 +29,7 @@
 
           <!-- Contribute Button -->
           <a
-            href="https://github.com/PeterM45/ai-instructions"
+            [href]="APP_CONFIG.GITHUB_REPO_URL"
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center px-4 py-2 bg-primary-600 text-white text-sm font-medium rounded-md hover:bg-primary-700 transition-colors duration-200"
@@ -156,7 +156,7 @@
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <a
-          href="https://github.com/PeterM45/ai-instructions/blob/main/CONTRIBUTING.md"
+          [href]="APP_CONFIG.CONTRIBUTING_URL"
           target="_blank"
           rel="noopener noreferrer"
           class="inline-flex items-center px-6 py-3 bg-primary-600 text-white font-medium rounded-md hover:bg-primary-700 transition-colors duration-200"
@@ -165,7 +165,7 @@
           Contribution Guide
         </a>
         <a
-          href="https://github.com/PeterM45/ai-instructions/issues/new"
+          [href]="APP_CONFIG.NEW_ISSUE_URL"
           target="_blank"
           rel="noopener noreferrer"
           class="inline-flex items-center px-6 py-3 bg-slate-700 text-slate-200 font-medium rounded-md border border-slate-600 hover:bg-slate-600 transition-colors duration-200"
@@ -187,14 +187,14 @@
         </p>
         <div class="mt-4 flex justify-center space-x-6">
           <a
-            href="https://github.com/PeterM45/ai-instructions"
+            [href]="APP_CONFIG.GITHUB_REPO_URL"
             class="text-slate-500 hover:text-slate-400 transition-colors duration-200"
           >
             <span class="sr-only">GitHub</span>
             <lucide-icon [img]="Github" class="h-6 w-6"></lucide-icon>
           </a>
           <a
-            href="https://angular.dev"
+            [href]="APP_CONFIG.ANGULAR_DOCS_URL"
             class="text-slate-500 hover:text-slate-400 transition-colors duration-200"
           >
             <span class="sr-only">Angular</span>

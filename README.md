@@ -29,7 +29,7 @@ src/
 ├── app/
 │   ├── components/       # Reusable components
 │   ├── models/          # TypeScript interfaces
-│   ├── pages/           # Page components
+│   ├── features/        # Feature components
 │   └── services/        # Angular services
 ├── data/
 │   └── prompts.json     # Technology data

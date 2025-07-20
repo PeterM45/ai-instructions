@@ -12,8 +12,9 @@ import { Technology, TechnologyType } from '@models/technology.model';
 import { TechnologyService } from '@core/services/technology.service';
 import { TechnologyCardComponent } from '@shared/components/technology-card/technology-card.component';
 import { SearchFilterComponent } from '@shared/components/search-filter/search-filter.component';
+import { APP_CONFIG } from '@shared/constants/app.constants';
+import { LucideAngularModule } from 'lucide-angular';
 import {
-  LucideAngularModule,
   Database,
   Search,
   Github,
@@ -22,7 +23,7 @@ import {
   Book,
   Plus,
   Star,
-} from 'lucide-angular';
+} from '@shared/index';
 
 @Component({
   selector: 'app-home',
@@ -39,7 +40,8 @@ import {
 export class HomeComponent implements OnInit {
   private readonly technologyService = inject(TechnologyService);
 
-  // Lucide icons
+  readonly APP_CONFIG = APP_CONFIG;
+
   readonly Database = Database;
   readonly Search = Search;
   readonly Github = Github;
@@ -110,7 +112,7 @@ export class HomeComponent implements OnInit {
   }
 
   getAngularVersion(): string {
-    return '20';
+    return APP_CONFIG.ANGULAR_VERSION;
   }
 
   private loadTechnologies(): void {
