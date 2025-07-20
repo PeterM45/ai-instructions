@@ -1,5 +1,6 @@
 export { SearchFilterComponent } from './components/search-filter/search-filter.component';
 export { TechnologyCardComponent } from './components/technology-card/technology-card.component';
+export { ConfigurationGuideComponent } from './components/configuration-guide/configuration-guide.component';
 
 export { APP_CONFIG, TECHNOLOGY_TYPES } from './constants/app.constants';
 
@@ -19,4 +20,5 @@ export {
   Calendar,
   Users,
   ExternalLink,
+  ArrowRight,
 } from 'lucide-angular';

@@ -2,12 +2,12 @@ import { TechnologyType } from '@models/technology.model';
 
 export const TECHNOLOGY_TYPES: readonly TechnologyType[] = [
   'Framework',
-  'IDE',
-  'Tool',
-  'Platform',
+  'Language',
+  'Runtime',
+  'Styling',
   'Database',
   'Cloud Service',
-  'AI/ML',
+  'Tool',
   'Other',
 ] as const;
 

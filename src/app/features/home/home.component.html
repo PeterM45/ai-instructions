@@ -1,38 +1,37 @@
 <div class="min-h-screen bg-slate-900">
   <!-- Header -->
-  <header class="bg-slate-800 shadow-sm border-b border-slate-700">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-      <div class="flex flex-col md:flex-row md:items-center md:justify-between">
-        <div class="flex-1">
-          <h1 class="text-3xl font-bold text-slate-100">AI Instructions Hub</h1>
-          <p class="mt-2 text-slate-300">
-            Community-driven collection of AI coding instructions, guidelines,
-            and best practices
-          </p>
-        </div>
+  <header
+    class="bg-slate-800/80 backdrop-blur-sm shadow-lg border-b border-slate-700/50"
+  >
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="text-center">
+        <h1 class="text-4xl font-bold text-slate-100 mb-3">
+          AI Instructions Hub
+        </h1>
+        <p class="text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
+          Community-driven collection of AI coding instructions, guidelines, and
+          best practices. Get your AI assistant configured with expert knowledge
+          for better code generation.
+        </p>
 
-        <div class="mt-4 md:mt-0 flex items-center gap-4">
-          <!-- Stats -->
-          <div class="flex items-center gap-6 text-sm text-slate-400">
-            <div class="flex items-center">
-              <lucide-icon [img]="Database" class="w-4 h-4 mr-1"></lucide-icon>
-              {{ totalTechnologies() }} Technologies
-            </div>
-
-            @if (filteredCount() !== totalTechnologies()) {
-            <div class="flex items-center text-primary-400">
-              <lucide-icon [img]="Search" class="w-4 h-4 mr-1"></lucide-icon>
-              {{ filteredCount() }} Filtered
-            </div>
-            }
+        <div
+          class="mt-6 flex items-center justify-center gap-6 text-sm text-slate-400"
+        >
+          <div class="flex items-center">
+            <lucide-icon [img]="Database" class="w-4 h-4 mr-2"></lucide-icon>
+            {{ totalTechnologies() }} Technologies
           </div>
-
-          <!-- Contribute Button -->
+          @if (filteredCount() !== totalTechnologies()) {
+          <div class="flex items-center text-primary-400">
+            <lucide-icon [img]="Search" class="w-4 h-4 mr-2"></lucide-icon>
+            {{ filteredCount() }} Filtered
+          </div>
+          }
           <a
             [href]="APP_CONFIG.GITHUB_REPO_URL"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center px-4 py-2 bg-primary-600 text-white text-sm font-medium rounded-md hover:bg-primary-700 transition-colors duration-200"
+            class="inline-flex items-center text-slate-400 hover:text-primary-400 transition-colors"
           >
             <lucide-icon [img]="Github" class="w-4 h-4 mr-2"></lucide-icon>
             Contribute
@@ -44,26 +43,41 @@
 
   <!-- Main Content -->
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Configuration Guide -->
+    <app-configuration-guide></app-configuration-guide>
+
     <!-- Search and Filters -->
-    <app-search-filter
-      (searchChange)="onSearchChange($event)"
-      (typeChange)="onTypeChange($event)"
-    ></app-search-filter>
+    <div class="mb-8">
+      <app-search-filter
+        (searchChange)="onSearchChange($event)"
+        (typeChange)="onTypeChange($event)"
+      >
+      </app-search-filter>
+    </div>
+
+    <!-- Section Introduction -->
+    <div class="text-center mb-10">
+      <h2 class="text-2xl font-bold text-slate-100 mb-3">
+        Available AI Instructions
+      </h2>
+      <p class="text-slate-400 max-w-2xl mx-auto">
+        Click any technology below to view and copy the AI instructions. Simply
+        paste them into your configuration file and start coding with enhanced
+        AI assistance.
+      </p>
+    </div>
 
     <!-- Type Statistics -->
     @if (typeStats().length > 0) {
-    <div class="mb-6">
-      <h2 class="text-lg font-semibold text-slate-100 mb-3">
-        Technologies by Type
-      </h2>
-      <div class="flex flex-wrap gap-2">
+    <div class="mb-8">
+      <div class="flex flex-wrap gap-3 justify-center">
         @for (stat of typeStats(); track stat.type) {
         <span
-          class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-slate-700 text-slate-200"
+          class="inline-flex items-center px-4 py-2 rounded-full text-sm bg-slate-800/50 text-slate-200 border border-slate-700"
         >
           {{ stat.type }}
           <span
-            class="ml-2 bg-slate-600 text-slate-100 px-2 py-0.5 rounded-full text-xs"
+            class="ml-2 bg-primary-600/20 text-primary-400 px-2 py-0.5 rounded-full text-xs font-medium"
           >
             {{ stat.count }}
           </span>
@@ -128,28 +142,34 @@
 
     <!-- Empty State -->
     @else {
-    <div class="text-center py-12">
+    <div class="text-center py-16">
       <lucide-icon
         [img]="Search"
-        class="mx-auto h-12 w-12 text-slate-400"
+        class="mx-auto h-16 w-16 text-slate-600 mb-4"
       ></lucide-icon>
-      <h3 class="mt-2 text-sm font-medium text-slate-100">
+      <h3 class="text-xl font-medium text-slate-100 mb-2">
         No technologies found
       </h3>
-      <p class="mt-1 text-sm text-slate-400">
+      <p class="text-slate-400 mb-6">
         Try adjusting your search or filter criteria.
       </p>
+      <button
+        (click)="onSearchChange(''); onTypeChange('')"
+        class="inline-flex items-center px-4 py-2 bg-slate-700 text-slate-200 rounded-lg hover:bg-slate-600 transition-colors"
+      >
+        Clear Filters
+      </button>
     </div>
     }
 
     <!-- Call to Action -->
     <div
-      class="mt-16 bg-slate-800 rounded-lg p-8 text-center border border-slate-700"
+      class="mt-20 bg-gradient-to-r from-slate-800/50 to-slate-700/50 rounded-xl p-8 text-center border border-slate-600"
     >
       <h2 class="text-2xl font-bold text-slate-100 mb-4">
         Help Grow the Community
       </h2>
-      <p class="text-slate-300 mb-6 max-w-2xl mx-auto">
+      <p class="text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed">
         Have instructions for a technology not listed here? Contribute to the
         community by submitting your AI coding guidelines and best practices
         through a GitHub pull request.
@@ -159,7 +179,7 @@
           [href]="APP_CONFIG.CONTRIBUTING_URL"
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center px-6 py-3 bg-primary-600 text-white font-medium rounded-md hover:bg-primary-700 transition-colors duration-200"
+          class="inline-flex items-center px-6 py-3 bg-primary-600 text-white font-medium rounded-lg hover:bg-primary-700 transition-all duration-200 hover:scale-105"
         >
           <lucide-icon [img]="Book" class="w-5 h-5 mr-2"></lucide-icon>
           Contribution Guide
@@ -168,7 +188,7 @@
           [href]="APP_CONFIG.NEW_ISSUE_URL"
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center px-6 py-3 bg-slate-700 text-slate-200 font-medium rounded-md border border-slate-600 hover:bg-slate-600 transition-colors duration-200"
+          class="inline-flex items-center px-6 py-3 bg-slate-700 text-slate-200 font-medium rounded-lg border border-slate-600 hover:bg-slate-600 transition-all duration-200 hover:scale-105"
         >
           <lucide-icon [img]="Plus" class="w-5 h-5 mr-2"></lucide-icon>
           Request Technology
@@ -178,24 +198,24 @@
   </main>
 
   <!-- Footer -->
-  <footer class="bg-slate-800 border-t border-slate-700 mt-16">
+  <footer class="bg-slate-800/30 border-t border-slate-700/50 mt-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div class="text-center">
-        <p class="text-slate-400">
+        <p class="text-slate-400 mb-4">
           Built with ❤️ by the community. Powered by Angular
           {{ getAngularVersion() }} and Tailwind CSS.
         </p>
-        <div class="mt-4 flex justify-center space-x-6">
+        <div class="flex justify-center space-x-6">
           <a
             [href]="APP_CONFIG.GITHUB_REPO_URL"
-            class="text-slate-500 hover:text-slate-400 transition-colors duration-200"
+            class="text-slate-500 hover:text-primary-400 transition-colors duration-200"
           >
             <span class="sr-only">GitHub</span>
             <lucide-icon [img]="Github" class="h-6 w-6"></lucide-icon>
           </a>
           <a
             [href]="APP_CONFIG.ANGULAR_DOCS_URL"
-            class="text-slate-500 hover:text-slate-400 transition-colors duration-200"
+            class="text-slate-500 hover:text-primary-400 transition-colors duration-200"
           >
             <span class="sr-only">Angular</span>
             <lucide-icon [img]="Star" class="h-6 w-6"></lucide-icon>

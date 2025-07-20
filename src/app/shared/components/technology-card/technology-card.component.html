@@ -1,71 +1,120 @@
-<div
-  class="bg-slate-800 rounded-lg shadow-sm border border-slate-700 hover:shadow-md hover:border-slate-600 transition-all duration-200 p-6"
+<a
+  [href]="technology().link"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="group block bg-gradient-to-br from-slate-800/50 to-slate-900/50 hover:from-slate-800/70 hover:to-slate-900/70 rounded-2xl border border-slate-700/50 hover:border-slate-600/70 transition-all duration-300 hover:shadow-xl hover:shadow-slate-900/30 hover:scale-[1.02] p-6 relative overflow-hidden"
 >
-  <div class="flex items-start justify-between mb-4">
-    <div class="flex-1">
-      <div class="flex items-center gap-2 mb-2">
-        <h3 class="text-lg font-semibold text-slate-100">
-          {{ technology().environment }}
-        </h3>
-        <span
-          class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium"
-          [class]="getTypeClasses(technology().type)"
+  <!-- Background pattern -->
+  <div
+    class="absolute inset-0 bg-gradient-to-br from-transparent via-slate-800/10 to-slate-700/20 pointer-events-none"
+  ></div>
+
+  <!-- Content -->
+  <div class="relative z-10">
+    <!-- Header with logo -->
+    <div class="flex items-start gap-4 mb-4">
+      <div class="flex-shrink-0">
+        @if (technology().logo) {
+        <div
+          class="w-12 h-12 rounded-xl bg-white/10 backdrop-blur-sm p-2 group-hover:bg-white/15 transition-colors"
         >
-          {{ technology().type }}
-        </span>
-      </div>
-
-      @if (technology().description) {
-      <p class="text-slate-300 text-sm mb-3">
-        {{ technology().description }}
-      </p>
-      }
-
-      <div class="space-y-2">
-        <div class="flex items-center text-sm text-slate-400">
-          <lucide-icon [img]="FileText" class="w-4 h-4 mr-2"></lucide-icon>
-          Rules File:
-          <span class="font-mono text-xs ml-1 text-slate-300">{{
-            technology().rulesFile
-          }}</span>
+          <img
+            [src]="technology().logo"
+            [alt]="technology().logoAlt || technology().environment + ' logo'"
+            class="w-full h-full object-contain"
+            loading="lazy"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
+          />
+          <!-- Fallback if image fails to load -->
+          <div
+            class="w-full h-full bg-primary-600/20 rounded-lg flex items-center justify-center text-primary-400 text-xs font-bold"
+            style="display: none"
+          >
+            {{ technology().environment.substring(0, 2).toUpperCase() }}
+          </div>
         </div>
-
-        <div class="flex items-center text-sm text-slate-400">
-          <lucide-icon [img]="BookOpen" class="w-4 h-4 mr-2"></lucide-icon>
-          {{ technology().installationInstructions }}
-        </div>
-
-        @if (technology().lastUpdated) {
-        <div class="flex items-center text-sm text-slate-400">
-          <lucide-icon [img]="Calendar" class="w-4 h-4 mr-2"></lucide-icon>
-          Updated: {{ formatDate(technology().lastUpdated!) }}
+        } @else {
+        <div
+          class="w-12 h-12 rounded-xl bg-primary-600/20 flex items-center justify-center"
+        >
+          <span class="text-primary-400 text-sm font-bold">
+            {{ technology().environment.substring(0, 2).toUpperCase() }}
+          </span>
         </div>
         }
       </div>
-    </div>
-  </div>
 
-  <div class="flex items-center justify-between">
-    <div class="flex items-center gap-2">
-      @if (technology().contributors && technology().contributors!.length > 0) {
-      <div class="flex items-center text-sm text-slate-400">
-        <lucide-icon [img]="Users" class="w-4 h-4 mr-1"></lucide-icon>
-        {{ technology().contributors!.length }} contributor{{
-          technology().contributors!.length !== 1 ? "s" : ""
-        }}
+      <div class="flex-1 min-w-0">
+        <div class="flex items-center gap-2 mb-2">
+          <h3
+            class="text-lg font-bold text-slate-100 group-hover:text-white transition-colors truncate"
+          >
+            {{ technology().environment }}
+          </h3>
+          <span
+            class="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium flex-shrink-0"
+            [class]="getTypeClasses(technology().type)"
+          >
+            {{ technology().type }}
+          </span>
+        </div>
+
+        @if (technology().description) {
+        <p
+          class="text-slate-400 text-sm leading-relaxed line-clamp-2 group-hover:text-slate-300 transition-colors"
+        >
+          {{ technology().description }}
+        </p>
+        }
       </div>
-      }
+
+      <!-- Arrow indicator -->
+      <div
+        class="flex-shrink-0 opacity-50 group-hover:opacity-100 transition-opacity"
+      >
+        <div
+          class="bg-primary-600/10 group-hover:bg-primary-600/20 rounded-lg p-2 transition-colors"
+        >
+          <lucide-icon
+            [img]="ExternalLink"
+            class="w-4 h-4 text-primary-400 group-hover:text-primary-300 transition-colors"
+          ></lucide-icon>
+        </div>
+      </div>
     </div>
 
-    <a
-      [href]="technology().link"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="inline-flex items-center px-4 py-2 bg-primary-600 text-white text-sm font-medium rounded-md hover:bg-primary-700 transition-colors duration-200"
+    <!-- Footer -->
+    <div
+      class="flex items-center justify-between pt-4 border-t border-slate-700/30"
     >
-      <lucide-icon [img]="Github" class="w-4 h-4 mr-2"></lucide-icon>
-      View Rules
-      <lucide-icon [img]="ExternalLink" class="w-4 h-4 ml-1"></lucide-icon>
-    </a>
+      <div class="flex items-center gap-3 text-xs text-slate-500">
+        @if (technology().contributors && technology().contributors!.length > 0)
+        {
+        <div class="flex items-center gap-1">
+          <lucide-icon [img]="Users" class="w-3 h-3"></lucide-icon>
+          <span
+            >{{ technology().contributors!.length }} contributor{{
+              technology().contributors!.length !== 1 ? "s" : ""
+            }}</span
+          >
+        </div>
+        } @if (technology().lastUpdated) {
+        <div class="flex items-center gap-1">
+          <lucide-icon [img]="Calendar" class="w-3 h-3"></lucide-icon>
+          <span>{{ formatDate(technology().lastUpdated!) }}</span>
+        </div>
+        }
+      </div>
+
+      <div
+        class="flex items-center gap-1 text-primary-400 group-hover:text-primary-300 transition-colors"
+      >
+        <span class="text-xs font-medium">Get Instructions</span>
+        <lucide-icon
+          [img]="ArrowRight"
+          class="w-3 h-3 group-hover:translate-x-0.5 transition-transform"
+        ></lucide-icon>
+      </div>
+    </div>
   </div>
-</div>
+</a>

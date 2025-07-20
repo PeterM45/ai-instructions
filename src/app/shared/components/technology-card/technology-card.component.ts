@@ -9,6 +9,7 @@ import {
   Users,
   Github,
   ExternalLink,
+  ArrowRight,
 } from '@shared/index';
 
 @Component({
@@ -26,6 +27,7 @@ export class TechnologyCardComponent {
   readonly Users = Users;
   readonly Github = Github;
   readonly ExternalLink = ExternalLink;
+  readonly ArrowRight = ArrowRight;
 
   readonly getTypeClasses = getTypeClasses;
   readonly formatDate = formatDate;

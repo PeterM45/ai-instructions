@@ -12,6 +12,7 @@ import { Technology, TechnologyType } from '@models/technology.model';
 import { TechnologyService } from '@core/services/technology.service';
 import { TechnologyCardComponent } from '@shared/components/technology-card/technology-card.component';
 import { SearchFilterComponent } from '@shared/components/search-filter/search-filter.component';
+import { ConfigurationGuideComponent } from '@shared/components/configuration-guide/configuration-guide.component';
 import { APP_CONFIG } from '@shared/constants/app.constants';
 import { LucideAngularModule } from 'lucide-angular';
 import {
@@ -33,6 +34,7 @@ import {
     HttpClientModule,
     TechnologyCardComponent,
     SearchFilterComponent,
+    ConfigurationGuideComponent,
     LucideAngularModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -5,17 +5,19 @@ export interface Technology {
   rulesFile: string;
   installationInstructions: string;
   description?: string;
+  logo?: string;
+  logoAlt?: string;
   link: string;
   lastUpdated?: string;
   contributors?: string[];
 }
 
 export type TechnologyType =
-  | 'IDE'
   | 'Framework'
-  | 'Tool'
-  | 'Platform'
+  | 'Language'
+  | 'Runtime'
+  | 'Styling'
   | 'Database'
   | 'Cloud Service'
-  | 'AI/ML'
+  | 'Tool'
   | 'Other';
