@@ -12,7 +12,6 @@ Thanks for your interest in contributing! This project collects AI coding instru
 ```
 instructions/
 ├── technology-name/
-│   ├── README.md          # Overview and setup info
 │   └── ai.md             # Main AI instructions file
 ```
 
@@ -66,7 +65,7 @@ instructions/
 
 - **Use kebab-case** for directory names: `my-technology`
 - **Main instruction file** must be named `ai.md`
-- **Include a README.md** with technology overview and setup instructions
+- **Keep it simple** - only the AI instructions file is needed
 
 ### Logo Requirements
 

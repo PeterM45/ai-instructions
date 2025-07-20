@@ -26,7 +26,12 @@
       <select
         id="type-filter"
         [formControl]="searchForm.controls.type"
-        class="block w-full px-4 py-3 border border-slate-600/50 bg-slate-800/50 text-slate-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500 transition-all duration-200"
+        class="block w-full pl-4 pr-10 py-3 border border-slate-600/50 bg-slate-800/50 text-slate-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500 transition-all duration-200 appearance-none bg-no-repeat bg-right"
+        style="
+          background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTQgNkw4IDEwTDEyIDYiIHN0cm9rZT0iIzk0YTNiOCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPC9zdmc+');
+          background-position: right 12px center;
+          background-size: 16px 16px;
+        "
       >
         <option value="">All Types</option>
         @for (type of technologyTypes; track type) {

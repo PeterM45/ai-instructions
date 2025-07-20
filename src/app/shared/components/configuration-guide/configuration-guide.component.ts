@@ -1,6 +1,13 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
-import { Copy, FileText, Settings, Zap } from 'lucide-angular';
+import {
+  Copy,
+  FileText,
+  Settings,
+  Zap,
+  ChevronDown,
+  ChevronUp,
+} from 'lucide-angular';
 
 export interface ConfigurationStep {
   id: string;
@@ -21,6 +28,14 @@ export class ConfigurationGuideComponent {
   readonly FileText = FileText;
   readonly Settings = Settings;
   readonly Zap = Zap;
+  readonly ChevronDown = ChevronDown;
+  readonly ChevronUp = ChevronUp;
+
+  protected readonly isExpanded = signal(false);
+
+  toggleExpanded(): void {
+    this.isExpanded.update((expanded) => !expanded);
+  }
 
   readonly configurationSteps: ConfigurationStep[] = [
     {

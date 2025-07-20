@@ -38,6 +38,9 @@ importers:
       rxjs:
         specifier: ~7.8.0
         version: 7.8.2
+      simple-icons:
+        specifier: ^15.7.0
+        version: 15.7.0
       tailwindcss:
         specifier: ^4.1.11
         version: 4.1.11
@@ -2573,6 +2576,10 @@ packages:
   sigstore@3.1.0:
     resolution: {integrity: sha512-ZpzWAFHIFqyFE56dXqgX/DkDRZdz+rRcjoIk/RQU4IX0wiCv1l8S7ZrXDHcCc+uaf+6o7w3h2l3g6GYG5TKN9Q==}
     engines: {node: ^18.17.0 || >=20.5.0}
+
+  simple-icons@15.7.0:
+    resolution: {integrity: sha512-buN9moq1lh6Tujgr2Nc3Vgi4naE0IOKon48G42aLWqSNxjWJlUx+YSqobKcefom4uv1xyAVFcjQOJIhBJvXjGw==}
+    engines: {node: '>=0.12.18'}
 
   slice-ansi@5.0.0:
     resolution: {integrity: sha512-FC+lgizVPfie0kkhqUScwRu1O/lF6NOgJmlCgK+/LYxDCTk8sGelYaHDhFcDN+Sn3Cv+3VSa4Byeo+IMCzpMgQ==}
@@ -5533,6 +5540,8 @@ snapshots:
       '@sigstore/verify': 2.1.1
     transitivePeerDependencies:
       - supports-color
+
+  simple-icons@15.7.0: {}
 
   slice-ansi@5.0.0:
     dependencies:

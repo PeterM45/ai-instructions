@@ -67,7 +67,7 @@ We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed gu
 ### Quick Start for Contributors
 
 1. Fork this repository
-2. Create instruction files in `instructions/technology-name/ai.md`
+2. Create `instructions/technology-name/ai.md` with AI instructions
 3. Update `public/data/prompts.json` with technology details and logo
 4. Submit a pull request
 

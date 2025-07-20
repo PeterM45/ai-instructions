@@ -6,10 +6,8 @@ import {
   signal,
   OnInit,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { Technology, TechnologyType } from '@models/technology.model';
-import { TechnologyService } from '@core/services/technology.service';
+import { FileBasedTechnologyService } from '@core/services/file-based-technology.service';
 import { TechnologyCardComponent } from '@shared/components/technology-card/technology-card.component';
 import { SearchFilterComponent } from '@shared/components/search-filter/search-filter.component';
 import { ConfigurationGuideComponent } from '@shared/components/configuration-guide/configuration-guide.component';
@@ -30,8 +28,6 @@ import {
   selector: 'app-home',
   templateUrl: './home.component.html',
   imports: [
-    CommonModule,
-    HttpClientModule,
     TechnologyCardComponent,
     SearchFilterComponent,
     ConfigurationGuideComponent,
@@ -40,7 +36,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit {
-  private readonly technologyService = inject(TechnologyService);
+  private readonly technologyService = inject(FileBasedTechnologyService);
 
   readonly APP_CONFIG = APP_CONFIG;
 
@@ -56,10 +52,12 @@ export class HomeComponent implements OnInit {
   private readonly _technologies = signal<Technology[]>([]);
   private readonly _searchTerm = signal('');
   private readonly _selectedType = signal<TechnologyType | ''>('');
+  private readonly _isLoading = signal(false);
+  private readonly _error = signal<string | null>(null);
 
   readonly technologies = this._technologies.asReadonly();
-  readonly isLoading = this.technologyService.isLoading;
-  readonly error = this.technologyService.error;
+  readonly isLoading = this._isLoading.asReadonly();
+  readonly error = this._error.asReadonly();
 
   readonly filteredTechnologies = computed(() => {
     const techs = this.technologies();
@@ -118,12 +116,18 @@ export class HomeComponent implements OnInit {
   }
 
   private loadTechnologies(): void {
+    this._isLoading.set(true);
+    this._error.set(null);
+
     this.technologyService.getTechnologies().subscribe({
       next: (technologies) => {
         this._technologies.set(technologies);
+        this._isLoading.set(false);
       },
       error: (error) => {
         console.error('Failed to load technologies:', error);
+        this._error.set('Failed to load technologies');
+        this._isLoading.set(false);
       },
     });
   }

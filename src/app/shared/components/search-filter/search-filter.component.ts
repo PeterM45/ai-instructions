@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   output,
-  signal,
   OnInit,
   OnDestroy,
 } from '@angular/core';
