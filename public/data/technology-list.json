@@ -4,17 +4,35 @@
       "id": "angular",
       "type": "Framework",
       "description": "Web application framework for building dynamic single-page applications",
-      "contributors": ["Angular", "PeterM45"],
+      "contributors": ["PeterM45", "Angular"],
       "resources": ["https://angular.dev/guide/ai-instructions"],
       "lastUpdated": "2025-07-20",
       "isVerified": true
     },
     {
       "id": "react",
-      "type": "Library",
-      "description": "JavaScript library for building user interfaces ",
-      "contributors": ["React", "PeterM45"],
-      "resources": ["N/A"],
+      "type": "Framework",
+      "description": "JavaScript library for building user interfaces",
+      "contributors": ["PeterM45"],
+      "resources": ["https://react.dev/learn"],
+      "lastUpdated": "2025-07-20",
+      "isVerified": false
+    },
+    {
+      "id": "astro",
+      "type": "Framework",
+      "description": "Static site generator for building fast websites",
+      "contributors": ["PeterM45"],
+      "resources": ["https://docs.astro.build/en/guides/build-with-ai/"],
+      "lastUpdated": "2025-07-20",
+      "isVerified": false
+    },
+    {
+      "id": "python",
+      "type": "Language",
+      "description": "High-level programming language known for its readability and versatility",
+      "contributors": ["PeterM45"],
+      "resources": ["https://www.python.org/doc/"],
       "lastUpdated": "2025-07-20",
       "isVerified": false
     }

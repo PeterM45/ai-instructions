@@ -1,21 +1,21 @@
-<div class="min-h-screen bg-slate-900">
+<div class="min-h-screen bg-zinc-950">
   <!-- Header -->
   <header
-    class="bg-slate-800/80 backdrop-blur-sm shadow-lg border-b border-slate-700/50"
+    class="bg-zinc-900/80 backdrop-blur-sm shadow-lg border-b border-zinc-800/50"
   >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div class="text-center">
-        <h1 class="text-4xl font-bold text-slate-100 mb-3">
+        <h1 class="text-4xl font-bold text-zinc-50 mb-3">
           AI Instructions Hub
         </h1>
-        <p class="text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
+        <p class="text-lg text-zinc-300 max-w-3xl mx-auto leading-relaxed">
           Community-driven collection of AI coding instructions, guidelines, and
           best practices. Get your AI assistant configured with expert knowledge
           for better code generation.
         </p>
 
         <div
-          class="mt-6 flex items-center justify-center gap-6 text-sm text-slate-400"
+          class="mt-6 flex items-center justify-center gap-6 text-sm text-zinc-400"
         >
           <div class="flex items-center">
             <lucide-icon [img]="Database" class="w-4 h-4 mr-2"></lucide-icon>
@@ -31,7 +31,7 @@
             [href]="APP_CONFIG.GITHUB_REPO_URL"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center text-slate-400 hover:text-primary-400 transition-colors"
+            class="inline-flex items-center text-zinc-400 hover:text-primary-400 transition-colors"
           >
             <lucide-icon [img]="Github" class="w-4 h-4 mr-2"></lucide-icon>
             Contribute
@@ -57,10 +57,10 @@
 
     <!-- Section Introduction -->
     <div class="text-center mb-10">
-      <h2 class="text-2xl font-bold text-slate-100 mb-3">
+      <h2 class="text-2xl font-bold text-zinc-50 mb-3">
         Available AI Instructions
       </h2>
-      <p class="text-slate-400 max-w-2xl mx-auto">
+      <p class="text-zinc-400 max-w-2xl mx-auto">
         Click any technology below to view and copy the AI instructions. Simply
         paste them into your configuration file and start coding with enhanced
         AI assistance.
@@ -73,7 +73,7 @@
       <div class="flex flex-wrap gap-3 justify-center">
         @for (stat of typeStats(); track stat.type) {
         <span
-          class="inline-flex items-center px-4 py-2 rounded-full text-sm bg-slate-800/50 text-slate-200 border border-slate-700"
+          class="inline-flex items-center px-4 py-2 rounded-full text-sm bg-zinc-900/50 text-zinc-200 border border-zinc-800"
         >
           {{ stat.type }}
           <span
@@ -95,14 +95,14 @@
           [img]="Loader2"
           class="w-6 h-6 animate-spin text-primary-400"
         ></lucide-icon>
-        <span class="text-slate-300">Loading technologies...</span>
+        <span class="text-zinc-300">Loading technologies...</span>
       </div>
     </div>
     }
 
     <!-- Error State -->
     @else if (error()) {
-    <div class="bg-red-900/50 border border-red-800 rounded-md p-4 mb-6">
+    <div class="bg-red-950/50 border border-red-900 rounded-md p-4 mb-6">
       <div class="flex">
         <div class="flex-shrink-0">
           <lucide-icon
@@ -121,7 +121,7 @@
             <button
               type="button"
               (click)="retryLoading()"
-              class="bg-red-800/50 px-3 py-2 rounded-md text-sm font-medium text-red-200 hover:bg-red-800 transition-colors duration-200"
+              class="bg-red-900/50 px-3 py-2 rounded-md text-sm font-medium text-red-200 hover:bg-red-800 transition-colors duration-200"
             >
               Try Again
             </button>
@@ -145,17 +145,17 @@
     <div class="text-center py-16">
       <lucide-icon
         [img]="Search"
-        class="mx-auto h-16 w-16 text-slate-600 mb-4"
+        class="mx-auto h-16 w-16 text-zinc-600 mb-4"
       ></lucide-icon>
-      <h3 class="text-xl font-medium text-slate-100 mb-2">
+      <h3 class="text-xl font-medium text-zinc-50 mb-2">
         No technologies found
       </h3>
-      <p class="text-slate-400 mb-6">
+      <p class="text-zinc-400 mb-6">
         Try adjusting your search or filter criteria.
       </p>
       <button
         (click)="onSearchChange(''); onTypeChange('')"
-        class="inline-flex items-center px-4 py-2 bg-slate-700 text-slate-200 rounded-lg hover:bg-slate-600 transition-colors"
+        class="inline-flex items-center px-4 py-2 bg-zinc-800 text-zinc-200 rounded-lg hover:bg-zinc-700 transition-colors"
       >
         Clear Filters
       </button>
@@ -164,12 +164,12 @@
 
     <!-- Call to Action -->
     <div
-      class="mt-20 bg-gradient-to-r from-slate-800/50 to-slate-700/50 rounded-xl p-8 text-center border border-slate-600"
+      class="mt-20 bg-gradient-to-r from-zinc-900/50 to-zinc-800/50 rounded-xl p-8 text-center border border-zinc-700"
     >
-      <h2 class="text-2xl font-bold text-slate-100 mb-4">
+      <h2 class="text-2xl font-bold text-zinc-50 mb-4">
         Help Grow the Community
       </h2>
-      <p class="text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+      <p class="text-zinc-300 mb-8 max-w-2xl mx-auto leading-relaxed">
         Have instructions for a technology not listed here? Contribute to the
         community by submitting your AI coding guidelines and best practices
         through a GitHub pull request.
@@ -188,7 +188,7 @@
           [href]="APP_CONFIG.NEW_ISSUE_URL"
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center px-6 py-3 bg-slate-700 text-slate-200 font-medium rounded-lg border border-slate-600 hover:bg-slate-600 transition-all duration-200 hover:scale-105"
+          class="inline-flex items-center px-6 py-3 bg-zinc-800 text-zinc-200 font-medium rounded-lg border border-zinc-700 hover:bg-zinc-700 transition-all duration-200 hover:scale-105"
         >
           <lucide-icon [img]="Plus" class="w-5 h-5 mr-2"></lucide-icon>
           Request Technology
@@ -198,29 +198,32 @@
   </main>
 
   <!-- Footer -->
-  <footer class="bg-slate-800/30 border-t border-slate-700/50 mt-20">
+  <footer
+    class="bg-gradient-to-r from-black/60 to-zinc-950/60 border-t border-zinc-900/80 mt-20"
+  >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div class="text-center">
-        <p class="text-slate-400 mb-4">
-          Built with ❤️ by the community. Powered by Angular
-          {{ getAngularVersion() }} and Tailwind CSS.
-        </p>
-        <div class="flex justify-center space-x-6">
+      <div
+        class="text-center text-zinc-400 text-sm flex flex-col gap-2 items-center"
+      >
+        <div>
+          Built with <span class="text-primary-400">❤️</span> by
+          <a
+            href="https://github.com/PeterM45"
+            target="_blank"
+            rel="noopener"
+            class="text-primary-400 hover:underline"
+            >PeterM45</a
+          >
+          &middot;
           <a
             [href]="APP_CONFIG.GITHUB_REPO_URL"
-            class="text-slate-500 hover:text-primary-400 transition-colors duration-200"
+            target="_blank"
+            rel="noopener"
+            class="text-primary-400 hover:underline"
+            >This Repo</a
           >
-            <span class="sr-only">GitHub</span>
-            <lucide-icon [img]="Github" class="h-6 w-6"></lucide-icon>
-          </a>
-          <a
-            [href]="APP_CONFIG.ANGULAR_DOCS_URL"
-            class="text-slate-500 hover:text-primary-400 transition-colors duration-200"
-          >
-            <span class="sr-only">Angular</span>
-            <lucide-icon [img]="Star" class="h-6 w-6"></lucide-icon>
-          </a>
         </div>
+        <div>Powered by Angular 20 and Tailwind CSS.</div>
       </div>
     </div>
   </footer>
