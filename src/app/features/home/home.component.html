@@ -133,7 +133,7 @@
 
     <!-- Technologies Grid -->
     @else if (filteredTechnologies().length > 0) {
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       @for (technology of filteredTechnologies(); track technology.id) {
       <app-technology-card [technology]="technology"></app-technology-card>
       }

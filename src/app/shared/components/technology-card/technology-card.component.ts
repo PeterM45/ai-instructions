@@ -1,16 +1,13 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  signal,
+} from '@angular/core';
 import { Technology } from '@models/technology.model';
 import { getTypeClasses, formatDate } from '@shared/utils/technology.utils';
-import { LucideAngularModule } from 'lucide-angular';
-import {
-  FileText,
-  BookOpen,
-  Calendar,
-  Users,
-  Github,
-  ExternalLink,
-  ArrowRight,
-} from '@shared/index';
+import { LucideAngularModule, Check } from 'lucide-angular';
+import { Calendar, Users, ExternalLink, ArrowRight } from '@shared/index';
 
 @Component({
   selector: 'app-technology-card',
@@ -21,13 +18,15 @@ import {
 export class TechnologyCardComponent {
   readonly technology = input.required<Technology>();
 
-  readonly FileText = FileText;
-  readonly BookOpen = BookOpen;
+  // Failsafe signals for expanding contributors/resources
+  readonly showAllContrib = signal(false);
+  readonly showAllRes = signal(false);
+
   readonly Calendar = Calendar;
   readonly Users = Users;
-  readonly Github = Github;
   readonly ExternalLink = ExternalLink;
   readonly ArrowRight = ArrowRight;
+  readonly Check = Check;
 
   readonly getTypeClasses = getTypeClasses;
   readonly formatDate = formatDate;

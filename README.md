@@ -1,6 +1,6 @@
 # AI Instructions Hub
 
-A community-driven collection of AI coding instructions and best practices for popular frameworks, programming languages, and development tools. Get your AI assistant configured with expert knowledge for better code generation.
+Community-driven collection of AI coding instructions and best practices for popular frameworks, programming languages, and development tools. Get your AI assistant configured with expert knowledge for better code generation.
 
 ## ✨ Features
 
@@ -42,7 +42,7 @@ src/
 │   ├── core/            # Services and core functionality
 │   └── models/          # TypeScript interfaces
 ├── public/data/
-│   └── prompts.json     # Technology data with logos
+│   └── technology-list.json  # List of technology directories to show
 └── instructions/        # AI instruction files (ai.md)
 ```
 
@@ -68,28 +68,34 @@ We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed gu
 
 1. Fork this repository
 2. Create `instructions/technology-name/ai.md` with AI instructions
-3. Update `public/data/prompts.json` with technology details and logo
+3. Add your technology's metadata to `public/data/technology-list.json` (see below)
 4. Submit a pull request
 
 ### Adding a New Technology
 
-Add an entry to `public/data/prompts.json`:
+1. Create your instructions in `instructions/your-tech/ai.md`
+2. Add your technology's metadata to `public/data/technology-list.json` as shown below:
 
 ```json
 {
-  "id": "your-tech",
-  "environment": "Your Technology",
-  "type": "Framework|Language|Runtime|Styling|Tool|Other",
-  "rulesFile": "ai.md",
-  "installationInstructions": "Copy to your AI configuration file",
-  "description": "Brief description of the technology",
-  "logo": "https://example.com/logo.png",
-  "logoAlt": "Technology Logo",
-  "link": "https://github.com/PeterM45/ai-instructions/blob/main/instructions/your-tech/ai.md",
-  "lastUpdated": "2025-01-19",
-  "contributors": ["your-github-username"]
+  "technologies": [
+    {
+      "id": "your-tech",
+      "type": "Framework|Language|Runtime|Styling|Tool|Other",
+      "contributors": ["your-github-username"],
+      "resources": ["https://link-to-resource.com"],
+      "lastUpdated": "2025-07-20",
+      "isVerified": false
+    }
+    // ...other technologies
+  ]
 }
 ```
+
+> **Note:** If you add more than 4 contributors or resources, only the first 4 will be shown on the card by default. A "+N more" button will appear to expand the full list. This keeps the UI clean and readable.
+
+3. That's it! The app will auto-generate the logo and environment name using [Simple Icons](https://simpleicons.org/) and your directory name. No manual logo upload required.
+4. Submit a pull request.
 
 ## 🏗️ Built With
 

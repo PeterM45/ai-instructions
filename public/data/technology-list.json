@@ -1,3 +1,22 @@
 {
-  "directories": ["angular"]
+  "technologies": [
+    {
+      "id": "angular",
+      "type": "Framework",
+      "description": "Web application framework for building dynamic single-page applications",
+      "contributors": ["Angular", "PeterM45"],
+      "resources": ["https://angular.dev/guide/ai-instructions"],
+      "lastUpdated": "2025-07-20",
+      "isVerified": true
+    },
+    {
+      "id": "react",
+      "type": "Library",
+      "description": "JavaScript library for building user interfaces ",
+      "contributors": ["React", "PeterM45"],
+      "resources": ["N/A"],
+      "lastUpdated": "2025-07-20",
+      "isVerified": false
+    }
+  ]
 }

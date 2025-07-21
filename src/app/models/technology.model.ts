@@ -10,6 +10,8 @@ export interface Technology {
   link: string;
   lastUpdated?: string;
   contributors?: string[];
+  resources?: string[];
+  isVerified?: boolean;
 }
 
 export type TechnologyType =

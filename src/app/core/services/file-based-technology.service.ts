@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map, catchError, of } from 'rxjs';
 import { Technology } from '@models/technology.model';
+import * as simpleIcons from 'simple-icons';
 
 @Injectable({
   providedIn: 'root',
@@ -11,63 +12,15 @@ export class FileBasedTechnologyService {
 
   getTechnologies(): Observable<Technology[]> {
     return this.http
-      .get<{ directories: string[] }>('./data/technology-list.json')
+      .get<{ technologies: any[] }>('./data/technology-list.json')
       .pipe(
-        map(({ directories }) => this.generateTechnologies(directories)),
-        catchError(() => of(this.getDefaultTechnologies()))
+        map(({ technologies }) => this.generateTechnologies(technologies)),
+        catchError(() => of([]))
       );
   }
 
-  private generateTechnologies(directories: string[]): Technology[] {
-    return directories.map((dir) => this.createTechnology(dir));
-  }
-
-  private createTechnology(directory: string): Technology {
-    const mapping = this.getTechnologyMapping();
-    const tech = mapping[directory] || this.getDefaultTechnology(directory);
-
-    return {
-      id: directory,
-      environment: tech.environment!,
-      type: tech.type!,
-      rulesFile: 'ai.md',
-      installationInstructions: 'Copy to your AI configuration file',
-      description: tech.description,
-      link: `https://github.com/PeterM45/ai-instructions/blob/main/instructions/${directory}/ai.md`,
-      logo: this.getLogoUrl(tech.iconSlug || directory),
-      logoAlt: `${tech.environment} Logo`,
-      lastUpdated: tech.lastUpdated,
-      contributors: tech.contributors,
-    };
-  }
-
-  private getTechnologyMapping(): Record<
-    string,
-    Partial<Technology> & { iconSlug: string }
-  > {
-    return {
-      angular: {
-        environment: 'Angular',
-        type: 'Framework',
-        description: 'Modern web framework with TypeScript and signals',
-        iconSlug: 'angular',
-        lastUpdated: '2025-01-19',
-        contributors: ['angular-team'],
-      },
-    };
-  }
-
-  private getDefaultTechnology(
-    directory: string
-  ): Partial<Technology> & { iconSlug: string } {
-    return {
-      environment: this.formatName(directory),
-      type: 'Tool',
-      description: `${this.formatName(directory)} AI configuration`,
-      iconSlug: directory,
-      lastUpdated: new Date().toISOString().split('T')[0],
-      contributors: [],
-    };
+  private generateTechnologies(technologies: any[]): Technology[] {
+    return technologies.map((tech) => this.createTechnology(tech));
   }
 
   private formatName(directory: string): string {
@@ -77,11 +30,47 @@ export class FileBasedTechnologyService {
       .join(' ');
   }
 
-  private getLogoUrl(iconSlug: string): string {
-    return `https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/${iconSlug}.svg`;
+  private getSimpleIcon(iconSlug: string): { url: string; hex: string } {
+    try {
+      // Simple Icons uses PascalCase keys, e.g. siAngular, siReact, siVuedotjs
+      const pascal =
+        'si' + iconSlug.replace(/(^|[-.])(\w)/g, (_, __, c) => c.toUpperCase());
+      const icon = (simpleIcons as any)[pascal];
+      if (icon) {
+        const svgContent = `<svg role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"#${icon.hex}\"><path d=\"${icon.path}\"/></svg>`;
+        return {
+          url: `data:image/svg+xml;base64,${btoa(svgContent)}`,
+          hex: icon.hex,
+        };
+      }
+    } catch {}
+    // fallback
+    const fallbackSvg = `<svg role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"#6366f1\"><circle cx=\"12\" cy=\"12\" r=\"10\"/></svg>`;
+    return {
+      url: `data:image/svg+xml;base64,${btoa(fallbackSvg)}`,
+      hex: '6366f1',
+    };
   }
 
-  private getDefaultTechnologies(): Technology[] {
-    return this.generateTechnologies(['angular']);
+  private createTechnology(tech: any): Technology {
+    const id = tech.id;
+    const iconSlug = id.toLowerCase();
+    const iconData = this.getSimpleIcon(iconSlug);
+    const environment = this.formatName(id);
+    return {
+      id,
+      environment,
+      type: tech.type || 'Tool',
+      rulesFile: 'ai.md',
+      installationInstructions: 'Copy to your AI configuration file',
+      description: tech.description || `${environment} AI configuration`,
+      link: `https://github.com/PeterM45/ai-instructions/blob/main/instructions/${id}/ai.md`,
+      logo: iconData.url,
+      logoAlt: `${environment} Logo`,
+      lastUpdated: tech.lastUpdated || new Date().toISOString().split('T')[0],
+      contributors: tech.contributors || [],
+      resources: tech.resources || [],
+      isVerified: !!tech.isVerified,
+    };
   }
 }

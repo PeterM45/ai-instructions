@@ -7,7 +7,7 @@ Thanks for your interest in contributing! This project collects AI coding instru
 ### Adding a New Technology
 
 1. **Fork this repository**
-2. **Create instruction files** following this structure:
+2. **Create your instruction file** following this structure:
 
 ```
 instructions/
@@ -15,30 +15,29 @@ instructions/
 │   └── ai.md             # Main AI instructions file
 ```
 
-3. **Add a technology logo** (recommended size: 64x64px or SVG)
+3. **Add your technology to the list**
 
-   - Use reliable CDNs like GitHub's raw content, official websites, or jsDelivr
-   - Ensure the logo is publicly accessible and has good contrast
-
-4. **Update `public/data/prompts.json`** with your technology:
+   - Open `public/data/technology-list.json`
+   - Add an object for your technology to the `technologies` array, for example:
 
 ```json
 {
-  "id": "unique-kebab-case-id",
-  "environment": "Technology Name",
-  "type": "Framework|Language|Runtime|Styling|Database|Cloud Service|Tool|Other",
-  "rulesFile": "ai.md",
-  "installationInstructions": "Copy to your AI configuration file",
-  "description": "Clear, concise description (keep under 80 characters)",
-  "logo": "https://example.com/path/to/logo.png",
-  "logoAlt": "Technology Name Logo",
-  "link": "https://github.com/PeterM45/ai-instructions/blob/main/instructions/technology-name/ai.md",
-  "lastUpdated": "YYYY-MM-DD",
-  "contributors": ["your-github-username"]
+  "id": "your-tech",
+  "type": "Framework|Language|Runtime|Styling|Tool|Other",
+  "contributors": ["your-github-username"],
+  "resources": ["https://link-to-resource.com"],
+  "lastUpdated": "2025-07-20",
+  "isVerified": false
 }
 ```
 
-5. **Submit a pull request** with a clear description
+> **Note:** If you add more than 4 contributors or resources, only the first 4 will be shown on the card by default. A "+N more" button will appear to expand the full list. This keeps the UI clean and readable.
+
+4. **No manual logo upload needed!**
+
+   - The app will automatically generate the logo and environment name using [Simple Icons](https://simpleicons.org/) and your directory name. If your technology is not found in Simple Icons, a fallback icon will be shown.
+
+5. **Submit a pull request** with a clear description. We'll review and merge your contribution!
 
 ## 📝 Guidelines
 
