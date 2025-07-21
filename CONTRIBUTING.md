@@ -1,29 +1,25 @@
-# Contributing Guide
+# Contributing
 
-Thanks for your interest in contributing! This project collects AI coding instructions and best practices for popular frameworks, programming languages, and development tools.
+Help improve this project by adding or updating AI instructions for frameworks, languages, and tools.
 
-## 🚀 How to Contribute
+## How to Contribute
 
-### Adding a New Technology
+### Add a New Technology
 
-1. **Fork this repository**
-2. **Create your instruction file** following this structure:
+1. Fork the repo
+2. Add your instructions in:
 
 ```
-instructions/
-├── technology-name/
-│   └── ai.md             # Main AI instructions file
+instructions/technology-name/ai.md
 ```
 
-3. **Add your technology to the list**
-
-   - Open `public/data/technology-list.json`
-   - Add an object for your technology to the `technologies` array, for example:
+3. Add your technology to `public/data/technology-list.json`:
 
 ```json
 {
   "id": "your-tech",
   "type": "Framework|Language|Runtime|Styling|Tool|Other",
+  "description": "Short description of the technology.",
   "contributors": ["your-github-username"],
   "resources": ["https://link-to-resource.com"],
   "lastUpdated": "2025-07-20",
@@ -31,102 +27,87 @@ instructions/
 }
 ```
 
-> **Note:** If you add more than 4 contributors or resources, only the first 4 will be shown on the card by default. A "+N more" button will appear to expand the full list. This keeps the UI clean and readable.
+If you add more than 4 contributors or resources, only the first 4 will show by default. A "+N more" button lets users expand the full list.
 
-4. **No manual logo upload needed!**
+No logo upload needed. The app uses [Simple Icons](https://simpleicons.org/) and your directory name. If not found, a fallback icon is used.
 
-   - The app will automatically generate the logo and environment name using [Simple Icons](https://simpleicons.org/) and your directory name. If your technology is not found in Simple Icons, a fallback icon will be shown.
+4. Open a pull request. Keep the description clear and direct.
 
-5. **Submit a pull request** with a clear description. We'll review and merge your contribution!
+## Guidelines
 
-## 📝 Guidelines
+### Content
 
-### Content Guidelines
-
-- **Be specific**: Provide clear, actionable AI instructions
-- **Focus on AI context**: Instructions should help AI understand the technology's patterns, best practices, and conventions
-- **Include examples**: Show practical code examples and patterns
-- **Keep it current**: Ensure instructions work with recent versions
-- **Be concise**: AI instructions should be comprehensive but not overly verbose
+- Be specific and actionable
+- Focus on helping AI understand patterns, best practices, and conventions
+- Include practical code examples
+- Make sure instructions work with recent versions
+- Keep instructions clear and concise
 
 ### Technology Types
 
-- **Framework**: React, Angular, Vue, Next.js, FastAPI, Django, etc.
-- **Language**: TypeScript, Python, Rust, Go, Java, C#, etc.
-- **Runtime**: Node.js, Deno, Bun, etc.
-- **Styling**: Tailwind CSS, styled-components, CSS Modules, etc.
-- **Database**: PostgreSQL, MongoDB, Redis, etc.
-- **Cloud Service**: AWS, Azure, GCP specific instructions
-- **Tool**: Webpack, Vite, ESLint, Prettier, etc.
-- **Other**: Everything else
+- Framework: React, Angular, Vue, Next.js, FastAPI, etc.
+- Language: TypeScript, Python, Rust, Go, etc.
+- Runtime: Node.js, Deno, Bun, etc.
+- Styling: Tailwind CSS, styled-components, etc.
+- Database: PostgreSQL, MongoDB, etc.
+- Cloud Service: AWS, Azure, GCP
+- Tool: Webpack, Vite, ESLint, etc.
+- Other: Anything else
 
 ### File Structure
 
-- **Use kebab-case** for directory names: `my-technology`
-- **Main instruction file** must be named `ai.md`
-- **Keep it simple** - only the AI instructions file is needed
+- Use kebab-case for directory names: `my-technology`
+- Name the main instruction file `ai.md`
+- Only the AI instructions file is required
 
-### Logo Requirements
+## AI Instructions Best Practices
 
-- **High quality**: Vector (SVG) preferred, or high-res PNG (min 64x64px)
-- **Public access**: Must be accessible via HTTPS without authentication
-- **Appropriate licensing**: Ensure you have rights to use the logo
-- **Good contrast**: Logos should work well on dark backgrounds
+Your `ai.md` file should have:
 
-## 🎯 AI Instructions Best Practices
+1. Technology overview and version
+2. Best practices and conventions
+3. Common code patterns
+4. Performance tips
+5. Integration notes
+6. Examples
 
-Your `ai.md` file should include:
-
-1. **Technology Overview**: Brief description and current version
-2. **Best Practices**: Coding patterns, naming conventions, project structure
-3. **Common Patterns**: Frequently used code snippets and approaches
-4. **Performance Tips**: Optimization techniques and anti-patterns to avoid
-5. **Integration Notes**: How it works with other tools and frameworks
-6. **Examples**: Real-world code examples demonstrating proper usage
-
-### Example Structure for `ai.md`:
+Example:
 
 ````markdown
 # Technology Name
 
-Brief description of the technology and its purpose.
+Short description.
 
 ## Best Practices
 
-- Follow these conventions...
-- Use this pattern for...
-- Avoid these anti-patterns...
+- Convention 1
+- Convention 2
 
 ## Code Examples
 
 ```language
-// Example code here
+// Example code
 ```
-````
 
 ## Integration
 
-- Works well with...
-- Common configurations...
+- Works with ...
+- Common configs ...
+````
 
-```
+## Review Process
 
-## 🔍 Review Process
+1. Automatic checks for JSON and required fields
+2. Manual review for quality and accuracy
+3. Instructions tested with AI tools
+4. You may get feedback for changes
 
-1. **Automatic checks**: PR will be validated for JSON syntax and required fields
-2. **Manual review**: Maintainers will review content quality and accuracy
-3. **Testing**: Instructions will be tested with popular AI tools
-4. **Feedback**: You may receive requests for improvements
+## Need Help?
 
-## 🙋 Need Help?
+- Open an issue for bugs or requests
+- Start a discussion for questions
+- See existing technologies for examples
 
-- [Open an issue](https://github.com/PeterM45/ai-instructions/issues) for bugs or feature requests
-- [Start a discussion](https://github.com/PeterM45/ai-instructions/discussions) for questions
-- Check existing technologies for examples and inspiration
+## Recognition
 
-## 🎉 Recognition
-
-Contributors are listed in the technology data and will be credited on the website. Your GitHub username will appear on the technology card!
-
-Thanks for helping make AI coding assistance better for everyone! 🚀
-```
+Contributors are listed in the technology data and credited on the website.
